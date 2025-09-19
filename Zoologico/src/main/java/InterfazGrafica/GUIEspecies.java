@@ -38,38 +38,39 @@ public class GUIEspecies extends javax.swing.JFrame {
         txtEspecieFamilia = new javax.swing.JTextField();
         txtEspeciePeligroExtincion = new javax.swing.JTextField();
         btnEspecieGuardar = new javax.swing.JButton();
-        btnZoologicoCancelar = new javax.swing.JButton();
+        btnEspecieCancelar = new javax.swing.JButton();
         txtEspeciesBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnZoologicoBuscar = new javax.swing.JButton();
-        btnZoologicoEditar = new javax.swing.JButton();
-        btnZoologicoEliminar = new javax.swing.JButton();
+        btnEspecieBuscar = new javax.swing.JButton();
+        btnEspecieEditar = new javax.swing.JButton();
+        btnEspecieEliminar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        btnEspecieRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
+        jLabel1.setText("ID:");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel1.setText("ID:");
 
+        jLabel2.setText("Nombre Vulgar:");
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel2.setText("Nombre Vulgar:");
 
+        jLabel3.setText("Nombre Cientifico:");
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel3.setText("Nombre Cientifico:");
 
+        jLabel4.setText("Familia:");
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel4.setText("Familia:");
 
+        jLabel5.setText("Peligro de Extinción:");
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel5.setText("Peligro de Extinción:");
 
         txtEspecieID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,21 +102,21 @@ public class GUIEspecies extends javax.swing.JFrame {
             }
         });
 
+        btnEspecieGuardar.setText("Guardar");
         btnEspecieGuardar.setBackground(new java.awt.Color(204, 255, 153));
         btnEspecieGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEspecieGuardar.setText("Guardar");
         btnEspecieGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEspecieGuardarActionPerformed(evt);
             }
         });
 
-        btnZoologicoCancelar.setBackground(new java.awt.Color(255, 153, 153));
-        btnZoologicoCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnZoologicoCancelar.setText("Cancelar");
-        btnZoologicoCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnEspecieCancelar.setText("Cancelar");
+        btnEspecieCancelar.setBackground(new java.awt.Color(255, 153, 153));
+        btnEspecieCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEspecieCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnZoologicoCancelarActionPerformed(evt);
+                btnEspecieCancelarActionPerformed(evt);
             }
         });
 
@@ -138,36 +139,45 @@ public class GUIEspecies extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        btnZoologicoBuscar.setBackground(new java.awt.Color(153, 204, 255));
-        btnZoologicoBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnZoologicoBuscar.setText("Buscar");
-        btnZoologicoBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnEspecieBuscar.setText("Buscar");
+        btnEspecieBuscar.setBackground(new java.awt.Color(153, 204, 255));
+        btnEspecieBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEspecieBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnZoologicoBuscarActionPerformed(evt);
+                btnEspecieBuscarActionPerformed(evt);
             }
         });
 
-        btnZoologicoEditar.setBackground(new java.awt.Color(255, 255, 153));
-        btnZoologicoEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnZoologicoEditar.setText("Editar");
-        btnZoologicoEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnEspecieEditar.setText("Editar");
+        btnEspecieEditar.setBackground(new java.awt.Color(255, 255, 153));
+        btnEspecieEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEspecieEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnZoologicoEditarActionPerformed(evt);
+                btnEspecieEditarActionPerformed(evt);
             }
         });
 
-        btnZoologicoEliminar.setBackground(new java.awt.Color(255, 153, 153));
-        btnZoologicoEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnZoologicoEliminar.setText("Eliminar");
-        btnZoologicoEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnEspecieEliminar.setText("Eliminar");
+        btnEspecieEliminar.setBackground(new java.awt.Color(255, 153, 153));
+        btnEspecieEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEspecieEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnZoologicoEliminarActionPerformed(evt);
+                btnEspecieEliminarActionPerformed(evt);
             }
         });
 
+        jLabel6.setText("Especies");
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel6.setText("Especies");
+
+        btnEspecieRegresar.setBackground(new java.awt.Color(255, 255, 153));
+        btnEspecieRegresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEspecieRegresar.setText("Regresar");
+        btnEspecieRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEspecieRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -179,7 +189,7 @@ public class GUIEspecies extends javax.swing.JFrame {
                         .addGap(92, 92, 92)
                         .addComponent(btnEspecieGuardar)
                         .addGap(99, 99, 99)
-                        .addComponent(btnZoologicoCancelar))
+                        .addComponent(btnEspecieCancelar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,10 +214,11 @@ public class GUIEspecies extends javax.swing.JFrame {
                     .addComponent(txtEspeciesBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnZoologicoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnZoologicoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnZoologicoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
+                    .addComponent(btnEspecieEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEspecieEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEspecieBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEspecieRegresar))
+                .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,43 +228,48 @@ public class GUIEspecies extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtEspeciesBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnZoologicoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnEspecieBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEspecieID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEspecieNombreVulgar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEspecieNombreCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEspecieFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEspeciePeligroExtincion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(107, 107, 107)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEspecieGuardar)
-                            .addComponent(btnZoologicoCancelar)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtEspecieID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtEspecieNombreVulgar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEspecieNombreCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEspecieFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtEspeciePeligroExtincion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(107, 107, 107)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnEspecieGuardar)
+                                    .addComponent(btnEspecieCancelar)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(32, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnZoologicoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEspecieEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
-                        .addComponent(btnZoologicoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(btnEspecieEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEspecieRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -281,21 +297,21 @@ public class GUIEspecies extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEspecieGuardarActionPerformed
 
-    private void btnZoologicoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoBuscarActionPerformed
+    private void btnEspecieBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnZoologicoBuscarActionPerformed
+    }//GEN-LAST:event_btnEspecieBuscarActionPerformed
 
-    private void btnZoologicoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoEditarActionPerformed
+    private void btnEspecieEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieEditarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnZoologicoEditarActionPerformed
+    }//GEN-LAST:event_btnEspecieEditarActionPerformed
 
-    private void btnZoologicoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoEliminarActionPerformed
+    private void btnEspecieEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieEliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnZoologicoEliminarActionPerformed
+    }//GEN-LAST:event_btnEspecieEliminarActionPerformed
 
-    private void btnZoologicoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoCancelarActionPerformed
+    private void btnEspecieCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnZoologicoCancelarActionPerformed
+    }//GEN-LAST:event_btnEspecieCancelarActionPerformed
 
     private void txtEspeciesBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEspeciesBuscarActionPerformed
         // TODO add your handling code here:
@@ -316,6 +332,10 @@ public class GUIEspecies extends javax.swing.JFrame {
     private void txtEspeciePeligroExtincionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEspeciePeligroExtincionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEspeciePeligroExtincionActionPerformed
+
+    private void btnEspecieRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieRegresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEspecieRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -354,11 +374,12 @@ public class GUIEspecies extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEspecieBuscar;
+    private javax.swing.JButton btnEspecieCancelar;
+    private javax.swing.JButton btnEspecieEditar;
+    private javax.swing.JButton btnEspecieEliminar;
     private javax.swing.JButton btnEspecieGuardar;
-    private javax.swing.JButton btnZoologicoBuscar;
-    private javax.swing.JButton btnZoologicoCancelar;
-    private javax.swing.JButton btnZoologicoEditar;
-    private javax.swing.JButton btnZoologicoEliminar;
+    private javax.swing.JButton btnEspecieRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -7,7 +7,7 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>23</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
         <exec.mainClass>com.mycompany.zoologico.Zoologico</exec.mainClass>
     </properties>
      <dependencies>
@@ -16,10 +16,11 @@
         <artifactId>mysql-connector-j</artifactId>
         <version>8.0.33</version>
     </dependency>
-          <dependency>
-               <groupId>LGoodDatePicker-11.2.1</groupId>
+        <dependency>    
+        <groupId>LGoodDatePicker-11.2.1</groupId>
                <artifactId>LGoodDatePicker-11.2.1</artifactId>
                <version>11.2.1</version>
-          </dependency>
+          
+    </dependency>
      </dependencies>
 </project>

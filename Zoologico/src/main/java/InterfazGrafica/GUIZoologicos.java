@@ -36,7 +36,6 @@ public class GUIZoologicos extends javax.swing.JFrame {
         txtZoologicoNombre = new javax.swing.JTextField();
         txtZoologicoCiudad = new javax.swing.JTextField();
         txtZoologicoPais = new javax.swing.JTextField();
-        txtZoologicoFechaInauguracion = new javax.swing.JTextField();
         btnZoologicoGuardar = new javax.swing.JButton();
         btnZoologicoCancelar = new javax.swing.JButton();
         txtZoologicoBuscar = new javax.swing.JTextField();
@@ -46,6 +45,8 @@ public class GUIZoologicos extends javax.swing.JFrame {
         btnZoologicoEditar = new javax.swing.JButton();
         btnZoologicoEliminar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        btnZoologicoRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,12 +93,6 @@ public class GUIZoologicos extends javax.swing.JFrame {
         txtZoologicoPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtZoologicoPaisActionPerformed(evt);
-            }
-        });
-
-        txtZoologicoFechaInauguracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtZoologicoFechaInauguracionActionPerformed(evt);
             }
         });
 
@@ -164,6 +159,15 @@ public class GUIZoologicos extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(204, 255, 153));
         jLabel6.setText("Zoologicos");
 
+        btnZoologicoRegresar.setBackground(new java.awt.Color(255, 255, 153));
+        btnZoologicoRegresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnZoologicoRegresar.setText("Regresar");
+        btnZoologicoRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZoologicoRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -191,17 +195,18 @@ public class GUIZoologicos extends javax.swing.JFrame {
                                     .addComponent(txtZoologicoID)
                                     .addComponent(txtZoologicoNombre)
                                     .addComponent(txtZoologicoCiudad)
-                                    .addComponent(txtZoologicoPais, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(txtZoologicoFechaInauguracion))))))
-                .addGap(50, 50, 50)
+                                    .addComponent(txtZoologicoPais)
+                                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
                     .addComponent(txtZoologicoBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnZoologicoEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnZoologicoEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnZoologicoBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnZoologicoBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnZoologicoRegresar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -218,10 +223,6 @@ public class GUIZoologicos extends javax.swing.JFrame {
                         .addComponent(jLabel6)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnZoologicoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnZoologicoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtZoologicoID)
@@ -240,14 +241,21 @@ public class GUIZoologicos extends javax.swing.JFrame {
                             .addComponent(txtZoologicoPais, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtZoologicoFechaInauguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(107, 107, 107)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(110, 110, 110)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnZoologicoGuardar)
                             .addComponent(btnZoologicoCancelar)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(btnZoologicoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(27, 27, 27)
+                            .addComponent(btnZoologicoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnZoologicoRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -288,10 +296,6 @@ public class GUIZoologicos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtZoologicoPaisActionPerformed
 
-    private void txtZoologicoFechaInauguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZoologicoFechaInauguracionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtZoologicoFechaInauguracionActionPerformed
-
     private void txtZoologicoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZoologicoBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtZoologicoBuscarActionPerformed
@@ -307,6 +311,10 @@ public class GUIZoologicos extends javax.swing.JFrame {
     private void btnZoologicoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnZoologicoEliminarActionPerformed
+
+    private void btnZoologicoRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoRegresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnZoologicoRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -350,6 +358,8 @@ public class GUIZoologicos extends javax.swing.JFrame {
     private javax.swing.JButton btnZoologicoEditar;
     private javax.swing.JButton btnZoologicoEliminar;
     private javax.swing.JButton btnZoologicoGuardar;
+    private javax.swing.JButton btnZoologicoRegresar;
+    private com.github.lgooddatepicker.components.DatePicker datePicker1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -361,7 +371,6 @@ public class GUIZoologicos extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtZoologicoBuscar;
     private javax.swing.JTextField txtZoologicoCiudad;
-    private javax.swing.JTextField txtZoologicoFechaInauguracion;
     private javax.swing.JTextField txtZoologicoID;
     private javax.swing.JTextField txtZoologicoNombre;
     private javax.swing.JTextField txtZoologicoPais;
