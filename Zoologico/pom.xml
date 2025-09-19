@@ -16,5 +16,10 @@
         <artifactId>mysql-connector-j</artifactId>
         <version>8.0.33</version>
     </dependency>
-</dependencies>
+          <dependency>
+               <groupId>LGoodDatePicker-11.2.1</groupId>
+               <artifactId>LGoodDatePicker-11.2.1</artifactId>
+               <version>11.2.1</version>
+          </dependency>
+     </dependencies>
 </project>
