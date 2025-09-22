@@ -19,6 +19,7 @@ public class GUIEspecies extends javax.swing.JFrame {
     /**
      * Creates new form GUIEspecies
      */
+    
     private control control;
     public GUIEspecies(control control) {
         this.control = control;
@@ -146,6 +147,12 @@ public class GUIEspecies extends javax.swing.JFrame {
         txtEspeciesBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEspeciesBuscarActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseClicked(evt);
             }
         });
 
@@ -387,6 +394,18 @@ public class GUIEspecies extends javax.swing.JFrame {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            Object id = jTable1.getValueAt(filaSeleccionada, 0);
+            Object nombre = jTable1.getValueAt(filaSeleccionada, 1);
+            Object ciudad = jTable1.getValueAt(filaSeleccionada, 2);
+
+            
+        }
+    }//GEN-LAST:event_jScrollPane1MouseClicked
 
     /**
      * @param args the command line arguments
