@@ -46,6 +46,11 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         btnMenuZoologicos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMenuZoologicos.setForeground(new java.awt.Color(0, 51, 51));
         btnMenuZoologicos.setText("Zoologicos");
+        btnMenuZoologicos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMenuZoologicosMouseClicked(evt);
+            }
+        });
         btnMenuZoologicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuZoologicosActionPerformed(evt);
@@ -56,6 +61,11 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         btnMenuAnimales.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMenuAnimales.setForeground(new java.awt.Color(0, 51, 51));
         btnMenuAnimales.setText("Animales");
+        btnMenuAnimales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMenuAnimalesMouseClicked(evt);
+            }
+        });
         btnMenuAnimales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuAnimalesActionPerformed(evt);
@@ -66,6 +76,11 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         btnMenuEspecies.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMenuEspecies.setForeground(new java.awt.Color(0, 51, 51));
         btnMenuEspecies.setText("Especies");
+        btnMenuEspecies.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMenuEspeciesMouseClicked(evt);
+            }
+        });
         btnMenuEspecies.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuEspeciesActionPerformed(evt);
@@ -73,7 +88,13 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         });
 
         btnMenuSalir.setBackground(new java.awt.Color(255, 102, 102));
+        btnMenuSalir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMenuSalir.setText("Salir");
+        btnMenuSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMenuSalirMouseClicked(evt);
+            }
+        });
         btnMenuSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuSalirActionPerformed(evt);
@@ -146,6 +167,26 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
     private void btnMenuEspeciesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuEspeciesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMenuEspeciesActionPerformed
+
+    private void btnMenuZoologicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuZoologicosMouseClicked
+        control navegar = new control();
+        navegar.navegarGUIZoologico(this);
+    }//GEN-LAST:event_btnMenuZoologicosMouseClicked
+
+    private void btnMenuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuSalirMouseClicked
+        control navegar = new control();
+        navegar.salirPrograma(this);
+    }//GEN-LAST:event_btnMenuSalirMouseClicked
+
+    private void btnMenuAnimalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuAnimalesMouseClicked
+        control navegar = new control();
+        navegar.navegarGUIAnimales(this);
+    }//GEN-LAST:event_btnMenuAnimalesMouseClicked
+
+    private void btnMenuEspeciesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuEspeciesMouseClicked
+        control navegar = new control();
+        navegar.navegarGUIEspecies(this);
+    }//GEN-LAST:event_btnMenuEspeciesMouseClicked
 
     /**
      * @param args the command line arguments

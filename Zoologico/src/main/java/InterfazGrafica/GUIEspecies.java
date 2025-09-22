@@ -4,6 +4,8 @@
  */
 package gui;
 
+import InterfazGrafica.control;
+
 /**
  *
  * @author riosr
@@ -52,25 +54,25 @@ public class GUIEspecies extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabel1.setText("ID:");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 255, 153));
+        jLabel1.setText("ID:");
 
-        jLabel2.setText("Nombre Vulgar:");
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 255, 153));
+        jLabel2.setText("Nombre Vulgar:");
 
-        jLabel3.setText("Nombre Cientifico:");
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 255, 153));
+        jLabel3.setText("Nombre Cientifico:");
 
-        jLabel4.setText("Familia:");
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 255, 153));
+        jLabel4.setText("Familia:");
 
-        jLabel5.setText("Peligro de Extinción:");
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 255, 153));
+        jLabel5.setText("Peligro de Extinción:");
 
         txtEspecieID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,18 +104,18 @@ public class GUIEspecies extends javax.swing.JFrame {
             }
         });
 
-        btnEspecieGuardar.setText("Guardar");
         btnEspecieGuardar.setBackground(new java.awt.Color(204, 255, 153));
         btnEspecieGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEspecieGuardar.setText("Guardar");
         btnEspecieGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEspecieGuardarActionPerformed(evt);
             }
         });
 
-        btnEspecieCancelar.setText("Cancelar");
         btnEspecieCancelar.setBackground(new java.awt.Color(255, 153, 153));
         btnEspecieCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEspecieCancelar.setText("Cancelar");
         btnEspecieCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEspecieCancelarActionPerformed(evt);
@@ -139,40 +141,45 @@ public class GUIEspecies extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        btnEspecieBuscar.setText("Buscar");
         btnEspecieBuscar.setBackground(new java.awt.Color(153, 204, 255));
         btnEspecieBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEspecieBuscar.setText("Buscar");
         btnEspecieBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEspecieBuscarActionPerformed(evt);
             }
         });
 
-        btnEspecieEditar.setText("Editar");
         btnEspecieEditar.setBackground(new java.awt.Color(255, 255, 153));
         btnEspecieEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEspecieEditar.setText("Editar");
         btnEspecieEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEspecieEditarActionPerformed(evt);
             }
         });
 
-        btnEspecieEliminar.setText("Eliminar");
         btnEspecieEliminar.setBackground(new java.awt.Color(255, 153, 153));
         btnEspecieEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEspecieEliminar.setText("Eliminar");
         btnEspecieEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEspecieEliminarActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Especies");
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 255, 153));
+        jLabel6.setText("Especies");
 
         btnEspecieRegresar.setBackground(new java.awt.Color(255, 255, 153));
         btnEspecieRegresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEspecieRegresar.setText("Regresar");
+        btnEspecieRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEspecieRegresarMouseClicked(evt);
+            }
+        });
         btnEspecieRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEspecieRegresarActionPerformed(evt);
@@ -257,19 +264,18 @@ public class GUIEspecies extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtEspeciePeligroExtincion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(107, 107, 107)
+                                .addGap(105, 105, 105)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnEspecieGuardar)
-                                    .addComponent(btnEspecieCancelar)))
+                                    .addComponent(btnEspecieCancelar)
+                                    .addComponent(btnEspecieRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(32, Short.MAX_VALUE))
+                        .addContainerGap(29, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnEspecieEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(btnEspecieEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEspecieRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))))
+                        .addGap(37, 278, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -335,7 +341,15 @@ public class GUIEspecies extends javax.swing.JFrame {
 
     private void btnEspecieRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieRegresarActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnEspecieRegresarActionPerformed
+
+    private void btnEspecieRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEspecieRegresarMouseClicked
+        // TODO add your handling code here:
+        control navegar = new control();
+        navegar.navegarGUIMenuPrincipal(this);
+        
+    }//GEN-LAST:event_btnEspecieRegresarMouseClicked
 
     /**
      * @param args the command line arguments

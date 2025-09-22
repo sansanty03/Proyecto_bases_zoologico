@@ -45,6 +45,8 @@ public class GUIAnimales extends javax.swing.JFrame {
         btnAnimalesEliminar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnAnimalRegresar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        cmbxAnimalesEspecie = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -161,11 +163,22 @@ public class GUIAnimales extends javax.swing.JFrame {
         btnAnimalRegresar.setBackground(new java.awt.Color(255, 255, 153));
         btnAnimalRegresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAnimalRegresar.setText("Regresar");
+        btnAnimalRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAnimalRegresarMouseClicked(evt);
+            }
+        });
         btnAnimalRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnimalRegresarActionPerformed(evt);
             }
         });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 255, 153));
+        jLabel5.setText("Especie:");
+
+        cmbxAnimalesEspecie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Especie", "Especie 2", "Especie 3" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -182,13 +195,15 @@ public class GUIAnimales extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtAnimalesID)
                                     .addComponent(txtAnimalesIdentificacion)
                                     .addComponent(txtAnimalesSexo)
-                                    .addComponent(txtAnimalesAñoNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))))
+                                    .addComponent(txtAnimalesAñoNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(cmbxAnimalesEspecie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(50, 50, 50))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(69, 69, 69)
@@ -244,7 +259,12 @@ public class GUIAnimales extends javax.swing.JFrame {
                                 .addComponent(txtAnimalesSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cmbxAnimalesEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addComponent(txtAnimalesAñoNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -315,6 +335,11 @@ public class GUIAnimales extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAnimalRegresarActionPerformed
 
+    private void btnAnimalRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnimalRegresarMouseClicked
+        control navegar = new control();
+        navegar.navegarGUIMenuPrincipal(this);
+    }//GEN-LAST:event_btnAnimalRegresarMouseClicked
+
     
     /**
      * @param args the command line arguments
@@ -358,10 +383,12 @@ public class GUIAnimales extends javax.swing.JFrame {
     private javax.swing.JButton btnAnimalesEditar;
     private javax.swing.JButton btnAnimalesEliminar;
     private javax.swing.JButton btnAnimalesGuardar;
+    private javax.swing.JComboBox<String> cmbxAnimalesEspecie;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

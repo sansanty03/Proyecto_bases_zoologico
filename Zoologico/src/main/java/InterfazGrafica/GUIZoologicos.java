@@ -159,9 +159,14 @@ public class GUIZoologicos extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(204, 255, 153));
         jLabel6.setText("Zoologicos");
 
+        btnZoologicoRegresar.setText("Regresar");
         btnZoologicoRegresar.setBackground(new java.awt.Color(255, 255, 153));
         btnZoologicoRegresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnZoologicoRegresar.setText("Regresar");
+        btnZoologicoRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnZoologicoRegresarMouseClicked(evt);
+            }
+        });
         btnZoologicoRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZoologicoRegresarActionPerformed(evt);
@@ -315,6 +320,11 @@ public class GUIZoologicos extends javax.swing.JFrame {
     private void btnZoologicoRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoRegresarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnZoologicoRegresarActionPerformed
+
+    private void btnZoologicoRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZoologicoRegresarMouseClicked
+        control navegar = new control();
+        navegar.navegarGUIMenuPrincipal(this);
+    }//GEN-LAST:event_btnZoologicoRegresarMouseClicked
 
     /**
      * @param args the command line arguments

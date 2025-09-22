@@ -59,6 +59,7 @@
                                       <Component id="jLabel4" alignment="0" pref="178" max="32767" attributes="0"/>
                                       <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel5" alignment="0" pref="178" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -66,6 +67,7 @@
                                       <Component id="txtAnimalesIdentificacion" alignment="0" max="32767" attributes="0"/>
                                       <Component id="txtAnimalesSexo" alignment="0" max="32767" attributes="0"/>
                                       <Component id="txtAnimalesAñoNacimiento" alignment="0" pref="150" max="32767" attributes="0"/>
+                                      <Component id="cmbxAnimalesEspecie" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -140,8 +142,15 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel4" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-                                  <Component id="txtAnimalesAñoNacimiento" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel4" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel5" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                          <Component id="cmbxAnimalesEspecie" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="txtAnimalesAñoNacimiento" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -376,8 +385,34 @@
             <Property name="text" type="java.lang.String" value="Regresar"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAnimalRegresarMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnimalRegresarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="ff" red="cc" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Especie:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbxAnimalesEspecie">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="Especie"/>
+                <StringItem index="1" value="Especie 2"/>
+                <StringItem index="2" value="Especie 3"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
