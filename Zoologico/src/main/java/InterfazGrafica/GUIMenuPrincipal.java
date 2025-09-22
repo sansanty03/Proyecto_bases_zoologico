@@ -13,7 +13,9 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form GUIMenuPrincipal
      */
-    public GUIMenuPrincipal() {
+    private control control;
+    public GUIMenuPrincipal(control control) {
+        this.control = control;
         initComponents();
     }
 
@@ -169,59 +171,20 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenuEspeciesActionPerformed
 
     private void btnMenuZoologicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuZoologicosMouseClicked
-        control navegar = new control();
-        navegar.navegarGUIZoologico(this);
+        control.navegarGUIZoologico(this);
     }//GEN-LAST:event_btnMenuZoologicosMouseClicked
 
     private void btnMenuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuSalirMouseClicked
-        control navegar = new control();
-        navegar.salirPrograma(this);
+        control.salirPrograma(this);
     }//GEN-LAST:event_btnMenuSalirMouseClicked
 
     private void btnMenuAnimalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuAnimalesMouseClicked
-        control navegar = new control();
-        navegar.navegarGUIAnimales(this);
+        control.navegarGUIAnimales(this);
     }//GEN-LAST:event_btnMenuAnimalesMouseClicked
 
     private void btnMenuEspeciesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuEspeciesMouseClicked
-        control navegar = new control();
-        navegar.navegarGUIEspecies(this);
+        control.navegarGUIEspecies(this);
     }//GEN-LAST:event_btnMenuEspeciesMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        //java.awt.EventQueue.invokeLater(new Runnable() {
-        //    public void run() {
-        //        new GUIMenuPrincipal().setVisible(true);
-        //    }
-        //});
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMenuAnimales;

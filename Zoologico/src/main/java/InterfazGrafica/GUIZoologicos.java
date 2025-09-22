@@ -4,6 +4,14 @@
  */
 package InterfazGrafica;
 
+import Entidades.Zoologico;
+import ImplementacionesNegocio.AnimalBO;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author riosr
@@ -13,8 +21,37 @@ public class GUIZoologicos extends javax.swing.JFrame {
     /**
      * Creates new form Zoologicos
      */
-    public GUIZoologicos() {
+    private control control;
+    private AnimalBO animalBO;
+    
+    public GUIZoologicos(control control) {
+        this.control = control;
         initComponents();
+        llenarTablaZoologico();
+    }
+    
+    public void llenarTablaZoologico() {
+        List<Zoologico> listaZoologicos = control.getZoologicoBO().listarZoologicos();
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Id Zoológico");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Ciudad");
+        modelo.addColumn("País");
+        modelo.addColumn("Fecha Inauguración");
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+        for (Zoologico z : listaZoologicos) {
+            Object[] fila = new Object[5];
+            fila[0] = z.getIdZoologico();
+            fila[1] = z.getNombre();
+            fila[2] = z.getCiudad();
+            fila[3] = z.getPais();
+             fila[4] = z.getFechaInauguracion() != null ? formato.format(z.getFechaInauguracion()) : "";
+            modelo.addRow(fila);
+        }
+        jTable1.setModel(modelo);
     }
 
     /**
@@ -286,7 +323,15 @@ public class GUIZoologicos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtZoologicoNombreActionPerformed
 
     private void btnZoologicoGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoGuardarActionPerformed
-        // TODO add your handling code here:
+        Zoologico nuevoZoologico = new Zoologico();
+        nuevoZoologico.setNombre(txtZoologicoNombre.getText());
+        nuevoZoologico.setCiudad(txtZoologicoCiudad.getText());
+        nuevoZoologico.setPais(txtZoologicoPais.getText());
+        nuevoZoologico.setFechaInauguracion(Date.from(datePicker1.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        
+        control.getZoologicoBO().registrarZoologico(nuevoZoologico);
+        
+        llenarTablaZoologico();
     }//GEN-LAST:event_btnZoologicoGuardarActionPerformed
 
     private void txtZoologicoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZoologicoIDActionPerformed
@@ -322,45 +367,12 @@ public class GUIZoologicos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnZoologicoRegresarActionPerformed
 
     private void btnZoologicoRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZoologicoRegresarMouseClicked
-        control navegar = new control();
-        navegar.navegarGUIMenuPrincipal(this);
+       
+        control.navegarGUIMenuPrincipal(this);
     }//GEN-LAST:event_btnZoologicoRegresarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIZoologicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIZoologicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIZoologicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIZoologicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIZoologicos().setVisible(true);
-            }
-        });
-    }
+  
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnZoologicoBuscar;

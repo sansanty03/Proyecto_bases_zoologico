@@ -4,17 +4,53 @@
  */
 package InterfazGrafica;
 
+import Entidades.Animal;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author riosr
  */
 public class GUIAnimales extends javax.swing.JFrame {
 
+    private control control;
     /**
      * Creates new form GUIAnimales
+     * @param control
      */
-    public GUIAnimales() {
+    public GUIAnimales(control control) {
+        this.control = control;
         initComponents();
+        llenarTablaAnimales();
+    }
+    
+    public void llenarTablaAnimales() {
+        List<Animal> listaAnimales = control.getAnimalBO().obtenerTodosLosAnimales();
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Id Animal");
+        modelo.addColumn("Identificación");
+        modelo.addColumn("Sexo");
+        modelo.addColumn("Año Nacimiento");
+        modelo.addColumn("Especie");
+        modelo.addColumn("Zoológico");
+
+        for (Animal a : listaAnimales) {
+            Object[] fila = new Object[6];
+            fila[0] = a.getIdAnimal();
+            fila[1] = a.getIdentificacion();
+            fila[2] = a.getSexo();
+            fila[3] = a.getAnioNacimiento();
+
+            // Obtener el nombre de la especie y zoológico
+            fila[4] = control.getEspecieBO().obtenerEspeciePorId(a.getIdEspecie()).getNombreVulgar();
+            fila[5] = control.getZoologicoBO().obtenerZoologicoPorId(a.getIdZoologico()).getNombre();
+
+            modelo.addRow(fila);
+        }
+
+        jTable1.setModel(modelo);
     }
 
     /**
@@ -336,45 +372,10 @@ public class GUIAnimales extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnimalRegresarActionPerformed
 
     private void btnAnimalRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnimalRegresarMouseClicked
-        control navegar = new control();
-        navegar.navegarGUIMenuPrincipal(this);
+        control.navegarGUIMenuPrincipal(this);
     }//GEN-LAST:event_btnAnimalRegresarMouseClicked
 
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIAnimales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIAnimales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIAnimales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIAnimales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIAnimales().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnimalRegresar;

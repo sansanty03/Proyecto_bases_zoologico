@@ -8,19 +8,23 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <exec.mainClass>com.mycompany.zoologico.Zoologico</exec.mainClass>
+        <exec.mainClass>Main.ZoologicoSistemaMain</exec.mainClass>
     </properties>
-     <dependencies>
-    <dependency>
-        <groupId>com.mysql</groupId>
-        <artifactId>mysql-connector-j</artifactId>
-        <version>8.0.33</version>
-    </dependency>
-        <dependency>    
-        <groupId>LGoodDatePicker-11.2.1</groupId>
-               <artifactId>LGoodDatePicker-11.2.1</artifactId>
-               <version>11.2.1</version>
-          
-    </dependency>
-     </dependencies>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+     
+<dependency>
+    <groupId>com.github.lgooddatepicker</groupId>
+    <artifactId>LGoodDatePicker</artifactId>
+    <version>11.2.0</version>
+</dependency>
+
+
+
+    </dependencies>
 </project>

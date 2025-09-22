@@ -2,9 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gui;
+package InterfazGrafica;
 
-import InterfazGrafica.control;
+import Entidades.Especie;
+import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -15,8 +19,31 @@ public class GUIEspecies extends javax.swing.JFrame {
     /**
      * Creates new form GUIEspecies
      */
-    public GUIEspecies() {
+    private control control;
+    public GUIEspecies(control control) {
+        this.control = control;
         initComponents();
+        llenarTabla();
+    }
+    
+       public void llenarTabla() {
+        List<Especie> listaEspecies = control.getEspecieBO().listarEspecies();
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Id Especies");
+        modelo.addColumn("Nombre Vulgar");
+        modelo.addColumn("Nombre Científico");
+        modelo.addColumn("Familia");
+        modelo.addColumn("Peligro de Extinción");
+        for (Especie e : listaEspecies) {
+            Object[] fila = new Object[5];
+            fila[0] = e.getIdEspecie();
+            fila[1] = e.getNombreVulgar();
+            fila[2] = e.getNombreCientifico();
+            fila[3] = e.getFamilia();
+            fila[4] = e.isPeligroExtincion() ? "Sí" : "No";
+            modelo.addRow(fila);
+        }
+        jTable1.setModel(modelo);
     }
 
     /**
@@ -38,7 +65,6 @@ public class GUIEspecies extends javax.swing.JFrame {
         txtEspecieNombreVulgar = new javax.swing.JTextField();
         txtEspecieNombreCientifico = new javax.swing.JTextField();
         txtEspecieFamilia = new javax.swing.JTextField();
-        txtEspeciePeligroExtincion = new javax.swing.JTextField();
         btnEspecieGuardar = new javax.swing.JButton();
         btnEspecieCancelar = new javax.swing.JButton();
         txtEspeciesBuscar = new javax.swing.JTextField();
@@ -49,6 +75,7 @@ public class GUIEspecies extends javax.swing.JFrame {
         btnEspecieEliminar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnEspecieRegresar = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,12 +122,6 @@ public class GUIEspecies extends javax.swing.JFrame {
         txtEspecieFamilia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEspecieFamiliaActionPerformed(evt);
-            }
-        });
-
-        txtEspeciePeligroExtincion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEspeciePeligroExtincionActionPerformed(evt);
             }
         });
 
@@ -186,17 +207,21 @@ public class GUIEspecies extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox1.setMaximumSize(new java.awt.Dimension(30, 30));
+        jCheckBox1.setMinimumSize(new java.awt.Dimension(30, 30));
+        jCheckBox1.setPreferredSize(new java.awt.Dimension(30, 30));
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(btnEspecieGuardar)
-                        .addGap(99, 99, 99)
-                        .addComponent(btnEspecieCancelar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +239,14 @@ public class GUIEspecies extends javax.swing.JFrame {
                                     .addComponent(txtEspecieNombreVulgar)
                                     .addComponent(txtEspecieNombreCientifico)
                                     .addComponent(txtEspecieFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(txtEspeciePeligroExtincion))))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(btnEspecieGuardar)
+                        .addGap(99, 99, 99)
+                        .addComponent(btnEspecieCancelar)))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
@@ -242,40 +274,37 @@ public class GUIEspecies extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEspecieID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEspecieNombreVulgar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtEspecieID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtEspecieNombreVulgar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEspecieNombreCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEspecieFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtEspeciePeligroExtincion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(105, 105, 105)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnEspecieGuardar)
-                                    .addComponent(btnEspecieCancelar)
-                                    .addComponent(btnEspecieRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(29, Short.MAX_VALUE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEspecieNombreCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEspecieFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(102, 102, 102)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEspecieGuardar)
+                            .addComponent(btnEspecieCancelar)
+                            .addComponent(btnEspecieRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnEspecieEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
-                        .addComponent(btnEspecieEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 278, Short.MAX_VALUE))))
+                        .addComponent(btnEspecieEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -301,6 +330,15 @@ public class GUIEspecies extends javax.swing.JFrame {
 
     private void btnEspecieGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieGuardarActionPerformed
         // TODO add your handling code here:
+        Especie nuevaEspecie = new Especie();
+        nuevaEspecie.setNombreVulgar(txtEspecieNombreVulgar.getText());
+        nuevaEspecie.setNombreCientifico(txtEspecieNombreCientifico.getText());
+        nuevaEspecie.setFamilia(txtEspecieFamilia.getText());
+        nuevaEspecie.setPeligroExtincion(jCheckBox1.isSelected());
+        
+        control.getEspecieBO().registrarEspecie(nuevaEspecie);
+        
+        llenarTabla();
     }//GEN-LAST:event_btnEspecieGuardarActionPerformed
 
     private void btnEspecieBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieBuscarActionPerformed
@@ -335,10 +373,6 @@ public class GUIEspecies extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEspecieFamiliaActionPerformed
 
-    private void txtEspeciePeligroExtincionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEspeciePeligroExtincionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEspeciePeligroExtincionActionPerformed
-
     private void btnEspecieRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieRegresarActionPerformed
         // TODO add your handling code here:
         
@@ -346,46 +380,17 @@ public class GUIEspecies extends javax.swing.JFrame {
 
     private void btnEspecieRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEspecieRegresarMouseClicked
         // TODO add your handling code here:
-        control navegar = new control();
-        navegar.navegarGUIMenuPrincipal(this);
+        control.navegarGUIMenuPrincipal(this);
         
     }//GEN-LAST:event_btnEspecieRegresarMouseClicked
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIEspecies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIEspecies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIEspecies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIEspecies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIEspecies().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEspecieBuscar;
@@ -394,6 +399,7 @@ public class GUIEspecies extends javax.swing.JFrame {
     private javax.swing.JButton btnEspecieEliminar;
     private javax.swing.JButton btnEspecieGuardar;
     private javax.swing.JButton btnEspecieRegresar;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -407,7 +413,6 @@ public class GUIEspecies extends javax.swing.JFrame {
     private javax.swing.JTextField txtEspecieID;
     private javax.swing.JTextField txtEspecieNombreCientifico;
     private javax.swing.JTextField txtEspecieNombreVulgar;
-    private javax.swing.JTextField txtEspeciePeligroExtincion;
     private javax.swing.JTextField txtEspeciesBuscar;
     // End of variables declaration//GEN-END:variables
 }
