@@ -17,4 +17,5 @@ public interface IZoologicoDAO {
     public boolean eliminar (int id);
     public Zoologico consultar (int id);
     public List<Zoologico> consultarTodos ();
+    List<Zoologico> buscarZoologicos(String S);
 }

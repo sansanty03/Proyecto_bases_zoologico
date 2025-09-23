@@ -23,5 +23,7 @@ public interface IAnimalBO {
     Animal obtenerAnimalPorId(int id);
 
     List<Animal> obtenerTodosLosAnimales();
+    
+    List<Animal> buscarAnimales(String s);
 }
 

@@ -136,5 +136,37 @@ public class EspecieDAO implements IEspecieDAO {
 
         return lista;
     }
+
+    @Override
+    public List<Especie> BuscarESpecies(String s) {
+        String sql = "SELECT * FROM especies WHERE nombre_vulgar LIKE ? OR nombre_cientifico LIKE ? OR familia LIKE ?";
+        List<Especie> lista = new ArrayList<>();
+
+        try (Connection conn = conexion.crearConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            String busqueda = "%" + s + "%";
+            ps.setString(1, busqueda);
+            ps.setString(2, busqueda);
+            ps.setString(3, busqueda);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Especie e = new Especie();
+                    e.setIdEspecie(rs.getInt("id_especie"));
+                    e.setNombreVulgar(rs.getString("nombre_vulgar"));
+                    e.setNombreCientifico(rs.getString("nombre_cientifico"));
+                    e.setFamilia(rs.getString("familia"));
+                    e.setPeligroExtincion(rs.getBoolean("peligro_extincion"));
+                    lista.add(e);
+                }
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar especies: " + ex.getMessage());
+        }
+
+        return lista;
+    }
 }
 

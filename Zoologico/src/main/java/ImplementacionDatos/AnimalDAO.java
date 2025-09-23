@@ -141,4 +141,36 @@ public class AnimalDAO implements IAnimalDAO {
 
         return lista;
     }
+
+    @Override
+    public List<Animal> buscarAnimales(String s) {
+        String sql = "SELECT * FROM animales WHERE identificacion LIKE ? OR sexo LIKE ?";
+        List<Animal> lista = new ArrayList<>();
+
+        try (Connection conn = conexion.crearConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            String busqueda = "%" + s + "%";
+            ps.setString(1, busqueda);
+            ps.setString(2, busqueda);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Animal a = new Animal();
+                    a.setIdAnimal(rs.getInt("id_animal"));
+                    a.setIdentificacion(rs.getString("identificacion"));
+                    a.setSexo(rs.getString("sexo"));
+                    a.setAnioNacimiento(rs.getInt("año_nacimiento"));
+                    a.setIdEspecie(rs.getInt("id_especie"));
+                    a.setIdZoologico(rs.getInt("id_zoologico"));
+                    lista.add(a);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al buscar animales: " + e.getMessage());
+        }
+
+        return lista;
+    }
 }

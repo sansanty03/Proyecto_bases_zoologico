@@ -27,9 +27,10 @@ public class GUIZoologicos extends javax.swing.JFrame {
     public GUIZoologicos(control control) {
         this.control = control;
         initComponents();
+        usosVarios();
         llenarTablaZoologico();
     }
-    
+
     public void llenarTablaZoologico() {
         List<Zoologico> listaZoologicos = control.getZoologicoBO().listarZoologicos();
 
@@ -53,6 +54,46 @@ public class GUIZoologicos extends javax.swing.JFrame {
         }
         jTable1.setModel(modelo);
     }
+    
+                                  
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {                                     
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            Object id = jTable1.getValueAt(filaSeleccionada, 0);
+            Object nombre = jTable1.getValueAt(filaSeleccionada, 1);
+            Object ciudad = jTable1.getValueAt(filaSeleccionada, 2);
+            Object pais = jTable1.getValueAt(filaSeleccionada, 3);
+            Object fecha = jTable1.getValueAt(filaSeleccionada, 4);
+
+            // Pasar a los JTextField
+            txtZoologicoID.setText(String.valueOf(id));
+            txtZoologicoNombre.setText(String.valueOf(nombre));
+            txtZoologicoCiudad.setText(String.valueOf(ciudad));
+            txtZoologicoPais.setText(String.valueOf(pais));
+
+            // Manejar la fecha en el DatePicker (formato dd/MM/yyyy)
+            if (fecha != null) {
+                try {
+                    java.time.format.DateTimeFormatter formatter = 
+                        java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    java.time.LocalDate localDate = java.time.LocalDate.parse(fecha.toString(), formatter);
+                    datePicker1.setDate(localDate);
+                } catch (Exception e) {
+                    e.printStackTrace(); // En caso de error al parsear
+                }
+            }
+        }
+    }                                   
+    
+     private void usosVarios(){
+         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+     
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,25 +130,25 @@ public class GUIZoologicos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
+        jLabel1.setText("ID:");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel1.setText("ID:");
 
+        jLabel2.setText("Nombre:");
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel2.setText("Nombre:");
 
+        jLabel3.setText("Ciudad:");
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel3.setText("Ciudad:");
 
+        jLabel4.setText("País:");
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel4.setText("País:");
 
+        jLabel5.setText("Fecha de Inauguración:");
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel5.setText("Fecha de Inauguración:");
 
         txtZoologicoID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,18 +174,23 @@ public class GUIZoologicos extends javax.swing.JFrame {
             }
         });
 
+        btnZoologicoGuardar.setText("Guardar");
         btnZoologicoGuardar.setBackground(new java.awt.Color(204, 255, 153));
         btnZoologicoGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnZoologicoGuardar.setText("Guardar");
         btnZoologicoGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZoologicoGuardarActionPerformed(evt);
             }
         });
 
+        btnZoologicoCancelar.setText("Cancelar");
         btnZoologicoCancelar.setBackground(new java.awt.Color(255, 153, 153));
         btnZoologicoCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnZoologicoCancelar.setText("Cancelar");
+        btnZoologicoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZoologicoCancelarActionPerformed(evt);
+            }
+        });
 
         txtZoologicoBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,36 +211,36 @@ public class GUIZoologicos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        btnZoologicoBuscar.setText("Buscar");
         btnZoologicoBuscar.setBackground(new java.awt.Color(153, 204, 255));
         btnZoologicoBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnZoologicoBuscar.setText("Buscar");
         btnZoologicoBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZoologicoBuscarActionPerformed(evt);
             }
         });
 
+        btnZoologicoEditar.setText("Editar");
         btnZoologicoEditar.setBackground(new java.awt.Color(255, 255, 153));
         btnZoologicoEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnZoologicoEditar.setText("Editar");
         btnZoologicoEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZoologicoEditarActionPerformed(evt);
             }
         });
 
+        btnZoologicoEliminar.setText("Eliminar");
         btnZoologicoEliminar.setBackground(new java.awt.Color(255, 153, 153));
         btnZoologicoEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnZoologicoEliminar.setText("Eliminar");
         btnZoologicoEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZoologicoEliminarActionPerformed(evt);
             }
         });
 
+        jLabel6.setText("Zoologicos");
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 255, 153));
-        jLabel6.setText("Zoologicos");
 
         btnZoologicoRegresar.setText("Regresar");
         btnZoologicoRegresar.setBackground(new java.awt.Color(255, 255, 153));
@@ -352,14 +398,50 @@ public class GUIZoologicos extends javax.swing.JFrame {
 
     private void btnZoologicoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoBuscarActionPerformed
         // TODO add your handling code here:
+        String busqueda = txtZoologicoBuscar.getText();
+        List<Zoologico> listaZoologicos = control.getZoologicoBO().buscarZoologicos(busqueda);
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Id Zoológico");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Ciudad");
+        modelo.addColumn("País");
+        modelo.addColumn("Fecha Inauguración");
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+        for (Zoologico z : listaZoologicos) {
+            Object[] fila = new Object[5];
+            fila[0] = z.getIdZoologico();
+            fila[1] = z.getNombre();
+            fila[2] = z.getCiudad();
+            fila[3] = z.getPais();
+             fila[4] = z.getFechaInauguracion() != null ? formato.format(z.getFechaInauguracion()) : "";
+            modelo.addRow(fila);
+        }
+        jTable1.setModel(modelo);
     }//GEN-LAST:event_btnZoologicoBuscarActionPerformed
 
     private void btnZoologicoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoEditarActionPerformed
         // TODO add your handling code here:
+        Zoologico oZoologico = new Zoologico();
+        oZoologico.setIdZoologico(Integer.parseInt(txtZoologicoID.getText()));
+        oZoologico.setNombre(txtZoologicoNombre.getText());
+        oZoologico.setCiudad(txtZoologicoCiudad.getText());
+        oZoologico.setPais(txtZoologicoPais.getText());
+        oZoologico.setFechaInauguracion(Date.from(datePicker1.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        
+        control.getZoologicoBO().modificarZoologico(oZoologico);
+        
+        llenarTablaZoologico();
     }//GEN-LAST:event_btnZoologicoEditarActionPerformed
 
     private void btnZoologicoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoEliminarActionPerformed
         // TODO add your handling code here:
+        int IdEleminar = Integer.parseInt(txtZoologicoID.getText());
+        control.getZoologicoBO().eliminarZoologico(IdEleminar);
+        
+        llenarTablaZoologico();
     }//GEN-LAST:event_btnZoologicoEliminarActionPerformed
 
     private void btnZoologicoRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoRegresarActionPerformed
@@ -370,6 +452,15 @@ public class GUIZoologicos extends javax.swing.JFrame {
        
         control.navegarGUIMenuPrincipal(this);
     }//GEN-LAST:event_btnZoologicoRegresarMouseClicked
+
+    private void btnZoologicoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoologicoCancelarActionPerformed
+        // TODO add your handling code here:
+         txtZoologicoID.setText("");
+        txtZoologicoNombre.setText("");
+        txtZoologicoCiudad.setText("");
+        txtZoologicoPais.setText("");
+        datePicker1.setDate(null);
+    }//GEN-LAST:event_btnZoologicoCancelarActionPerformed
 
   
     

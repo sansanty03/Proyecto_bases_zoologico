@@ -5,6 +5,8 @@
 package InterfazGrafica;
 
 import Entidades.Animal;
+import Entidades.Especie;
+import Entidades.Zoologico;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,6 +25,7 @@ public class GUIAnimales extends javax.swing.JFrame {
         this.control = control;
         initComponents();
         llenarTablaAnimales();
+        llenarComboBox();
     }
     
     public void llenarTablaAnimales() {
@@ -52,7 +55,20 @@ public class GUIAnimales extends javax.swing.JFrame {
 
         jTable1.setModel(modelo);
     }
+    
+    private void llenarComboBox(){
+        List<Especie> listaEspecies = control.getEspecieBO().listarEspecies();
+        cmbxAnimalesEspecie.removeAllItems(); 
+        for (Especie e : listaEspecies) {
+            cmbxAnimalesEspecie.addItem(e.getNombreVulgar()); 
+        }
 
+        List<Zoologico> listaZoologicos = control.getZoologicoBO().listarZoologicos();
+        cmbxAnimalesEspecie1.removeAllItems(); 
+        for (Zoologico z : listaZoologicos) {
+            cmbxAnimalesEspecie1.addItem(z.getNombre()); 
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,6 +99,8 @@ public class GUIAnimales extends javax.swing.JFrame {
         btnAnimalRegresar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         cmbxAnimalesEspecie = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        cmbxAnimalesEspecie1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,6 +181,11 @@ public class GUIAnimales extends javax.swing.JFrame {
                 "Id Animales", "Identificación", "Sexo", "Año Nacimiento", "Id Especie", "Id Zoologico"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         btnAnimalesBuscar.setBackground(new java.awt.Color(153, 204, 255));
@@ -215,6 +238,17 @@ public class GUIAnimales extends javax.swing.JFrame {
         jLabel5.setText("Especie:");
 
         cmbxAnimalesEspecie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Especie", "Especie 2", "Especie 3" }));
+        cmbxAnimalesEspecie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbxAnimalesEspecieActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(204, 255, 153));
+        jLabel7.setText("Zoologico");
+
+        cmbxAnimalesEspecie1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Especie", "Especie 2", "Especie 3" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -232,14 +266,16 @@ public class GUIAnimales extends javax.swing.JFrame {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtAnimalesID)
                                     .addComponent(txtAnimalesIdentificacion)
                                     .addComponent(txtAnimalesSexo)
                                     .addComponent(txtAnimalesAñoNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(cmbxAnimalesEspecie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(cmbxAnimalesEspecie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbxAnimalesEspecie1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(50, 50, 50))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(69, 69, 69)
@@ -300,7 +336,11 @@ public class GUIAnimales extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cmbxAnimalesEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(cmbxAnimalesEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cmbxAnimalesEspecie1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addComponent(txtAnimalesAñoNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -333,22 +373,83 @@ public class GUIAnimales extends javax.swing.JFrame {
 
     private void btnAnimalesGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnimalesGuardarActionPerformed
         // TODO add your handling code here:
+        Animal a = new Animal();
+        a.setIdentificacion(txtAnimalesIdentificacion.getText().trim());
+        a.setSexo(txtAnimalesSexo.getText().trim());
+        a.setAnioNacimiento(Integer.parseInt(txtAnimalesAñoNacimiento.getText().trim()));
+        String nombreEspecie = (String) cmbxAnimalesEspecie.getSelectedItem();
+        List<Especie> listaEspecies = control.getEspecieBO().BuscarESpecies(nombreEspecie);
+        a.setIdEspecie(listaEspecies.get(0).getIdEspecie());
+        String nombreZoo = (String) cmbxAnimalesEspecie1.getSelectedItem();
+        List<Zoologico> listaZoologicos = control.getZoologicoBO().buscarZoologicos(nombreZoo);
+        a.setIdZoologico(listaZoologicos.get(0).getIdZoologico());
+        control.getAnimalBO().registrarAnimal(a);
+        
+        llenarTablaAnimales();
     }//GEN-LAST:event_btnAnimalesGuardarActionPerformed
 
     private void btnAnimalesCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnimalesCancelarActionPerformed
         // TODO add your handling code here:
+        txtAnimalesID.setText("");
+        txtAnimalesIdentificacion.setText("");
+        txtAnimalesAñoNacimiento.setText("");
+        txtAnimalesSexo.setText("");
+        
     }//GEN-LAST:event_btnAnimalesCancelarActionPerformed
 
     private void btnAnimalesBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnimalesBuscarActionPerformed
         // TODO add your handling code here:
+        String busqueda = txtAnimalesBuscar.getText();
+        List<Animal> listaAnimales = control.getAnimalBO().buscarAnimales(busqueda);
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Id Animal");
+        modelo.addColumn("Identificación");
+        modelo.addColumn("Sexo");
+        modelo.addColumn("Año Nacimiento");
+        modelo.addColumn("Especie");
+        modelo.addColumn("Zoológico");
+
+        for (Animal a : listaAnimales) {
+            Object[] fila = new Object[6];
+            fila[0] = a.getIdAnimal();
+            fila[1] = a.getIdentificacion();
+            fila[2] = a.getSexo();
+            fila[3] = a.getAnioNacimiento();
+
+            fila[4] = control.getEspecieBO().obtenerEspeciePorId(a.getIdEspecie()).getNombreVulgar();
+            fila[5] = control.getZoologicoBO().obtenerZoologicoPorId(a.getIdZoologico()).getNombre();
+
+            modelo.addRow(fila);
+        }
+
+        jTable1.setModel(modelo);
     }//GEN-LAST:event_btnAnimalesBuscarActionPerformed
 
     private void btnAnimalesEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnimalesEditarActionPerformed
         // TODO add your handling code here:
+        Animal a = new Animal();
+        a.setIdZoologico(Integer.parseInt(txtAnimalesID.getText()));
+        a.setIdentificacion(txtAnimalesIdentificacion.getText().trim());
+        a.setSexo(txtAnimalesSexo.getText().trim());
+        a.setAnioNacimiento(Integer.parseInt(txtAnimalesAñoNacimiento.getText().trim()));
+        String nombreEspecie = (String) cmbxAnimalesEspecie.getSelectedItem();
+        List<Especie> listaEspecies = control.getEspecieBO().BuscarESpecies(nombreEspecie);
+        a.setIdEspecie(listaEspecies.get(0).getIdEspecie());
+        String nombreZoo = (String) cmbxAnimalesEspecie1.getSelectedItem();
+        List<Zoologico> listaZoologicos = control.getZoologicoBO().buscarZoologicos(nombreZoo);
+        a.setIdZoologico(listaZoologicos.get(0).getIdZoologico());
+        control.getAnimalBO().modificarAnimal(a);
+        
+        llenarTablaAnimales();
     }//GEN-LAST:event_btnAnimalesEditarActionPerformed
 
     private void btnAnimalesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnimalesEliminarActionPerformed
         // TODO add your handling code here:
+        int IdEliminar = Integer.parseInt(txtAnimalesID.getText());
+        control.getAnimalBO().removerAnimal(IdEliminar);
+        
+        llenarTablaAnimales();
     }//GEN-LAST:event_btnAnimalesEliminarActionPerformed
 
     private void txtAnimalesIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnimalesIDActionPerformed
@@ -375,6 +476,31 @@ public class GUIAnimales extends javax.swing.JFrame {
         control.navegarGUIMenuPrincipal(this);
     }//GEN-LAST:event_btnAnimalRegresarMouseClicked
 
+    private void cmbxAnimalesEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxAnimalesEspecieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbxAnimalesEspecieActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            Object id = jTable1.getValueAt(filaSeleccionada, 0);
+            Object identificacion = jTable1.getValueAt(filaSeleccionada, 1);
+            Object sexo = jTable1.getValueAt(filaSeleccionada, 2);
+            Object anio = jTable1.getValueAt(filaSeleccionada, 3);
+            Object nombreEspecie = jTable1.getValueAt(filaSeleccionada, 4);
+            Object nombreZoo = jTable1.getValueAt(filaSeleccionada, 5);
+            
+            txtAnimalesID.setText(String.valueOf(id));
+            txtAnimalesIdentificacion.setText(String.valueOf(identificacion));
+            txtAnimalesSexo.setText(String.valueOf(sexo));
+            txtAnimalesAñoNacimiento.setText(String.valueOf(anio));
+
+            cmbxAnimalesEspecie.setSelectedItem(String.valueOf(nombreEspecie));
+            cmbxAnimalesEspecie1.setSelectedItem(String.valueOf(nombreZoo));
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -385,12 +511,14 @@ public class GUIAnimales extends javax.swing.JFrame {
     private javax.swing.JButton btnAnimalesEliminar;
     private javax.swing.JButton btnAnimalesGuardar;
     private javax.swing.JComboBox<String> cmbxAnimalesEspecie;
+    private javax.swing.JComboBox<String> cmbxAnimalesEspecie1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

@@ -81,5 +81,10 @@ public class AnimalBO implements IAnimalBO {
     public List<Animal> obtenerTodosLosAnimales() {
         return dao.consultarTodos();
     }
+
+    @Override
+    public List<Animal> buscarAnimales(String s) {
+        return dao.buscarAnimales(s);
+    }
 }
 

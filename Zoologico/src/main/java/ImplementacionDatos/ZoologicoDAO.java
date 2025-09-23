@@ -137,5 +137,37 @@ public class ZoologicoDAO implements IZoologicoDAO {
 
         return lista;
     }
+
+    @Override
+    public List<Zoologico> buscarZoologicos(String S) {
+         String sql = "SELECT * FROM zoologicos WHERE nombre LIKE ? OR ciudad LIKE ? OR pais LIKE ?";
+    List<Zoologico> lista = new ArrayList<>();
+
+    try (Connection conn = conexion.crearConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        String busqueda = "%" + S + "%";
+        ps.setString(1, busqueda);
+        ps.setString(2, busqueda);
+        ps.setString(3, busqueda);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Zoologico z = new Zoologico();
+                z.setIdZoologico(rs.getInt("id_zoologico"));
+                z.setNombre(rs.getString("nombre"));
+                z.setCiudad(rs.getString("ciudad"));
+                z.setPais(rs.getString("pais"));
+                z.setFechaInauguracion(new Date(rs.getDate("fecha_inauguracion").getTime()));
+                lista.add(z);
+            }
+        }
+
+        } catch (SQLException e) {
+            System.out.println("Error al buscar zoológicos: " + e.getMessage());
+        }
+
+        return lista;
+    }
 }
 

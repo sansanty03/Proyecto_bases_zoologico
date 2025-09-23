@@ -23,5 +23,7 @@ public interface IEspecieBO {
     Especie obtenerEspeciePorId(int id);
 
     List<Especie> listarEspecies();
+    
+    List<Especie> BuscarESpecies(String s);
 }
 

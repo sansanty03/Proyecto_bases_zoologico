@@ -17,4 +17,5 @@ public interface IAnimalDAO {
     public boolean eliminar (int id);
     public Animal consultar (int id);
     public List<Animal> consultarTodos ();
+    List<Animal> buscarAnimales(String s);
 }

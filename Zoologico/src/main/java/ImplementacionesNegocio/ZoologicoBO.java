@@ -80,5 +80,10 @@ public class ZoologicoBO implements IZoologicoBO {
     public List<Zoologico> listarZoologicos() {
         return dao.consultarTodos();
     }
+
+    @Override
+    public List<Zoologico> buscarZoologicos(String S) {
+        return dao.buscarZoologicos(S);
+    }
 }
 

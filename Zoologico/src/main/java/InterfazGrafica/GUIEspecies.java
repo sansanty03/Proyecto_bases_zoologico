@@ -167,6 +167,11 @@ public class GUIEspecies extends javax.swing.JFrame {
                 "Id Especies", "Nomre Vulgar", "Nombre Cientifico", "Familia", "Peligro de Extincion"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         btnEspecieBuscar.setBackground(new java.awt.Color(153, 204, 255));
@@ -350,18 +355,55 @@ public class GUIEspecies extends javax.swing.JFrame {
 
     private void btnEspecieBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieBuscarActionPerformed
         // TODO add your handling code here:
+        String busqueda = txtEspeciesBuscar.getText();
+        List<Especie> listaEspecies = control.getEspecieBO().BuscarESpecies(busqueda);
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Id Especies");
+        modelo.addColumn("Nombre Vulgar");
+        modelo.addColumn("Nombre Científico");
+        modelo.addColumn("Familia");
+        modelo.addColumn("Peligro de Extinción");
+        for (Especie e : listaEspecies) {
+            Object[] fila = new Object[5];
+            fila[0] = e.getIdEspecie();
+            fila[1] = e.getNombreVulgar();
+            fila[2] = e.getNombreCientifico();
+            fila[3] = e.getFamilia();
+            fila[4] = e.isPeligroExtincion() ? "Sí" : "No";
+            modelo.addRow(fila);
+        }
+        jTable1.setModel(modelo);
     }//GEN-LAST:event_btnEspecieBuscarActionPerformed
 
     private void btnEspecieEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieEditarActionPerformed
         // TODO add your handling code here:
+        Especie aEspecie = new Especie();
+        aEspecie.setIdEspecie(Integer.parseInt(txtEspecieID.getText()));
+        aEspecie.setNombreVulgar(txtEspecieNombreVulgar.getText());
+        aEspecie.setNombreCientifico(txtEspecieNombreCientifico.getText());
+        aEspecie.setFamilia(txtEspecieFamilia.getText());
+        aEspecie.setPeligroExtincion(jCheckBox1.isSelected());
+        
+        control.getEspecieBO().actualizarEspecie(aEspecie);
+        
+        llenarTabla();
     }//GEN-LAST:event_btnEspecieEditarActionPerformed
 
     private void btnEspecieEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieEliminarActionPerformed
         // TODO add your handling code here:
+        int IdEleminar = Integer.parseInt(txtEspecieID.getText());
+        control.getEspecieBO().eliminarEspecie(IdEleminar);
+        
+        llenarTabla();
     }//GEN-LAST:event_btnEspecieEliminarActionPerformed
 
     private void btnEspecieCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecieCancelarActionPerformed
         // TODO add your handling code here:
+        txtEspecieID.setText("");
+        txtEspecieNombreVulgar.setText("");
+        txtEspecieNombreCientifico.setText("");
+        txtEspecieFamilia.setText("");
+        jCheckBox1.setSelected(false);
     }//GEN-LAST:event_btnEspecieCancelarActionPerformed
 
     private void txtEspeciesBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEspeciesBuscarActionPerformed
@@ -397,15 +439,30 @@ public class GUIEspecies extends javax.swing.JFrame {
 
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
         // TODO add your handling code here:
-        int filaSeleccionada = jTable1.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            Object id = jTable1.getValueAt(filaSeleccionada, 0);
-            Object nombre = jTable1.getValueAt(filaSeleccionada, 1);
-            Object ciudad = jTable1.getValueAt(filaSeleccionada, 2);
-
-            
-        }
     }//GEN-LAST:event_jScrollPane1MouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable1.getSelectedRow();
+    if (filaSeleccionada != -1) {
+        Object id = jTable1.getValueAt(filaSeleccionada, 0);
+        Object nombreVulgar = jTable1.getValueAt(filaSeleccionada, 1);
+        Object nombreCientifico = jTable1.getValueAt(filaSeleccionada, 2);
+        Object familia = jTable1.getValueAt(filaSeleccionada, 3);
+        Object enPeligro = jTable1.getValueAt(filaSeleccionada, 4);
+
+        txtEspecieID.setText(String.valueOf(id));
+        txtEspecieNombreVulgar.setText(String.valueOf(nombreVulgar));
+        txtEspecieNombreCientifico.setText(String.valueOf(nombreCientifico));
+        txtEspecieFamilia.setText(String.valueOf(familia));
+
+        if ("Sí".equalsIgnoreCase(String.valueOf(enPeligro))) {
+            jCheckBox1.setSelected(true);
+        } else {
+            jCheckBox1.setSelected(false);
+        }
+    }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

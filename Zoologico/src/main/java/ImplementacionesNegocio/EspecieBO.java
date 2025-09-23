@@ -79,4 +79,9 @@ public class EspecieBO implements IEspecieBO {
     public List<Especie> listarEspecies() {
         return dao.consultarTodos();
     }
+
+    @Override
+    public List<Especie> BuscarESpecies(String s) {
+       return dao.BuscarESpecies(s);
+    }
 }

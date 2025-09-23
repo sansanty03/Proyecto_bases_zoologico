@@ -23,4 +23,6 @@ public interface IZoologicoBO {
     Zoologico obtenerZoologicoPorId(int id);
 
     List<Zoologico> listarZoologicos();
+    
+    List<Zoologico> buscarZoologicos(String S);
 }

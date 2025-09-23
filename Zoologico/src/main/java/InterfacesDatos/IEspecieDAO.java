@@ -17,4 +17,5 @@ public interface IEspecieDAO {
     public boolean eliminar (int id);
     public Especie consultar (int id);
     public List<Especie> consultarTodos ();
+    List<Especie> BuscarESpecies(String s);
 }
